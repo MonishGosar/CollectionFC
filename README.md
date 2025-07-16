@@ -29,4 +29,4 @@ python -m collection_fc --mode simple \
     --validation_path out/val.json
 ```
 
-See `simple_collection_forecasting_library.md` for full documentation. 
+See `simple_collection_forecasting_library.md` for full documentation.
