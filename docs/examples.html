@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examples - CollectionFC</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --text-color: #1f2937;
+            --light-bg: #f8fafc;
+            --border-color: #e2e8f0;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+        
+        .sidebar {
+            position: sticky;
+            top: 2rem;
+            height: calc(100vh - 4rem);
+            overflow-y: auto;
+        }
+        
+        .sidebar .nav-link {
+            color: var(--text-color);
+            padding: 0.5rem 0;
+            border-left: 3px solid transparent;
+            font-size: 0.9rem;
+        }
+        
+        .sidebar .nav-link:hover,
+        .sidebar .nav-link.active {
+            color: var(--primary-color);
+            border-left-color: var(--primary-color);
+            background: none;
+        }
+        
+        .content {
+            padding: 2rem 0;
+        }
+        
+        .code-block {
+            background: #1e293b;
+            color: #e2e8f0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        
+        .example-card {
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .example-title {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .output-preview {
+            background: var(--light-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .file-structure {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.9rem;
+        }
+        
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+        
+        h3 {
+            color: var(--secondary-color);
+            margin-top: 1.5rem;
+        }
+        
+        .step-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: 600;
+            margin-right: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-chart-line me-2"></i>CollectionFC
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="user-guide.html">User Guide</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="api-reference.html">API</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="examples.html">Examples</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-lg-3 col-md-4">
+                <div class="sidebar p-3">
+                    <h5 class="mb-3">Examples</h5>
+                    <nav class="nav flex-column">
+                        <a class="nav-link" href="#basic-example">Basic Example</a>
+                        <a class="nav-link" href="#credit-card">Credit Card Collections</a>
+                        <a class="nav-link" href="#mortgage">Mortgage Collections</a>
+                        <a class="nav-link" href="#automotive">Automotive Loans</a>
+                        <a class="nav-link" href="#custom-analysis">Custom Analysis</a>
+                        <a class="nav-link" href="#batch-processing">Batch Processing</a>
+                        <a class="nav-link" href="#integration">Python Integration</a>
+                    </nav>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-lg-9 col-md-8">
+                <div class="content">
+                    <h1>Examples</h1>
+                    <p class="lead">Practical examples and use cases for CollectionFC.</p>
+
+                    <section id="basic-example">
+                        <h2>Basic Example</h2>
+                        <p>Start with a simple collection forecasting workflow.</p>
+                        
+                        <div class="example-card">
+                            <h3 class="example-title">Step-by-Step Basic Forecast</h3>
+                            
+                            <div class="mb-3">
+                                <span class="step-number">1</span>
+                                <strong>Prepare your data</strong>
+                            </div>
+                            <p>Create a CSV file with your collection ledger data:</p>
+                            <div class="code-block">
+account_id,as_of_date,dpd,balance,recovery_amt
+ACC001,2024-01-31,0,1000.00,0.00
+ACC002,2024-01-31,30,2500.00,500.00
+ACC003,2024-01-31,60,1500.00,0.00
+ACC004,2024-01-31,90,3000.00,750.00
+ACC005,2024-01-31,120,2000.00,0.00
+                            </div>
+                            
+                            <div class="mb-3">
+                                <span class="step-number">2</span>
+                                <strong>Run the forecast</strong>
+                            </div>
+                            <div class="code-block">
+python -m collection_fc --mode simple --input ledger.csv
+                            </div>
+                            
+                            <div class="mb-3">
+                                <span class="step-number">3</span>
+                                <strong>Review results</strong>
+                            </div>
+                            <p>Check the generated files:</p>
+                            <div class="file-structure">
+forecast.csv          # 12-month cash flow projections
+transition_matrix.csv # 7×7 state transition probabilities  
+validation.json       # Model accuracy metrics
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="credit-card">
+                        <h2>Credit Card Collections</h2>
+                        <p>Example for credit card collection forecasting with high-frequency data.</p>
+                        
+                        <div class="example-card">
+                            <h3 class="example-title">Credit Card Portfolio Analysis</h3>
+                            
+                            <h4>Data Preparation</h4>
+                            <p>Credit card collections typically have:</p>
+                            <ul>
+                                <li>High account volumes (thousands of accounts)</li>
+                                <li>Frequent state transitions</li>
+                                <li>Seasonal patterns</li>
+                            </ul>
+                            
+                            <h4>Sample Credit Card Data</h4>
+                            <div class="code-block">
+account_id,as_of_date,dpd,balance,recovery_amt
+CC001,2024-01-31,0,1500.00,0.00
+CC002,2024-01-31,15,2200.00,300.00
+CC003,2024-01-31,30,1800.00,150.00
+CC004,2024-01-31,45,3200.00,400.00
+CC005,2024-01-31,60,950.00,0.00
+CC006,2024-01-31,75,4100.00,600.00
+CC007,2024-01-31,90,2800.00,200.00
+CC008,2024-01-31,105,1600.00,0.00
+CC009,2024-01-31,120,3300.00,500.00
+CC010,2024-01-31,135,2400.00,0.00
+                            </div>
+                            
+                            <h4>Expected Results</h4>
+                            <div class="output-preview">
+                                <strong>Forecast Summary:</strong><br>
+                                • Total portfolio value: $25,300<br>
+                                • 12-month projected collections: $18,450<br>
+                                • Average monthly collection rate: 6.1%<br>
+                                • State accuracy: 89%
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="mortgage">
+                        <h2>Mortgage Collections</h2>
+                        <p>Example for mortgage collection forecasting with longer-term patterns.</p>
+                        
+                        <div class="example-card">
+                            <h3 class="example-title">Mortgage Portfolio Forecasting</h3>
+                            
+                            <h4>Characteristics</h4>
+                            <ul>
+                                <li>Higher average balances</li>
+                                <li>Longer collection cycles</li>
+                                <li>More stable state transitions</li>
+                                <li>Seasonal payment patterns</li>
+                            </ul>
+                            
+                            <h4>Sample Mortgage Data</h4>
+                            <div class="code-block">
+account_id,as_of_date,dpd,balance,recovery_amt
+MORT001,2024-01-31,0,250000.00,0.00
+MORT002,2024-01-31,30,180000.00,2500.00
+MORT003,2024-01-31,60,320000.00,0.00
+MORT004,2024-01-31,90,195000.00,5000.00
+MORT005,2024-01-31,120,280000.00,0.00
+MORT006,2024-01-31,150,165000.00,3000.00
+MORT007,2024-01-31,180,220000.00,0.00
+                            </div>
+                            
+                            <h4>Expected Results</h4>
+                            <div class="output-preview">
+                                <strong>Mortgage Forecast:</strong><br>
+                                • Total portfolio value: $1,610,000<br>
+                                • 12-month projected collections: $1,245,000<br>
+                                • Average monthly collection rate: 6.4%<br>
+                                • State accuracy: 92%
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="automotive">
+                        <h2>Automotive Loans</h2>
+                        <p>Example for automotive loan collection forecasting.</p>
+                        
+                        <div class="example-card">
+                            <h3 class="example-title">Auto Loan Collections</h3>
+                            
+                            <h4>Data Structure</h4>
+                            <div class="code-block">
+account_id,as_of_date,dpd,balance,recovery_amt
+AUTO001,2024-01-31,0,15000.00,0.00
+AUTO002,2024-01-31,30,22000.00,800.00
+AUTO003,2024-01-31,60,18000.00,0.00
+AUTO004,2024-01-31,90,25000.00,1200.00
+AUTO005,2024-01-31,120,12000.00,0.00
+AUTO006,2024-01-31,150,30000.00,1500.00
+AUTO007,2024-01-31,180,16000.00,0.00
+                            </div>
+                            
+                            <h4>Automotive-Specific Considerations</h4>
+                            <ul>
+                                <li>Collateral-based recovery (vehicle repossession)</li>
+                                <li>Higher recovery rates in early stages</li>
+                                <li>Seasonal patterns (tax refund season)</li>
+                                <li>Geographic variations in recovery rates</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section id="custom-analysis">
+                        <h2>Custom Analysis</h2>
+                        <p>Advanced examples for custom analysis and integration.</p>
+                        
+                        <div class="example-card">
+                            <h3 class="example-title">Python Integration</h3>
+                            
+                            <h4>Direct API Usage</h4>
+                            <div class="code-block">
+import pandas as pd
+import numpy as np
+from collection_fc import simple
+
+# Load data
+df = pd.read_csv('ledger.csv')
+
+# Fit model
+P = simple.fit_simple(df, lookback=24)
+c = simple.build_c_vector(df)
+
+# Generate forecast
+cash_flow, balances = simple.simulate_cash(P, B0, c, H=12)
+
+# Custom analysis
+monthly_collection_rate = cash_flow / balances[0]
+print(f"Average monthly collection rate: {monthly_collection_rate.mean():.2%}")
+                            </div>
+                            
+                            <h4>Custom State Definitions</h4>
+                            <div class="code-block">
+from collection_fc.bucket import STATES, THRESHOLDS
+
+# Custom state mapping
+def custom_dpd_to_state(dpd):
+    if dpd == 0:
+        return 'CURRENT'
+    elif dpd <= 30:
+        return 'EARLY_DELINQUENT'
+    elif dpd <= 60:
+        return 'LATE_DELINQUENT'
+    elif dpd <= 90:
+        return 'SEVERE_DELINQUENT'
+    else:
+        return 'CHARGEOFF'
+
+# Apply custom mapping
+df['custom_state'] = df['dpd'].apply(custom_dpd_to_state)
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="batch-processing">
+                        <h2>Batch Processing</h2>
+                        <p>Example for processing multiple portfolios or time periods.</p>
+                        
+                        <div class="example-card">
+                            <h3 class="example-title">Multiple Portfolio Analysis</h3>
+                            
+                            <h4>Batch Processing Script</h4>
+                            <div class="code-block">
+import os
+import subprocess
+from pathlib import Path
+
+# Directory containing multiple CSV files
+data_dir = Path("portfolios/")
+output_dir = Path("results/")
+output_dir.mkdir(exist_ok=True)
+
+# Process each portfolio
+for csv_file in data_dir.glob("*.csv"):
+    portfolio_name = csv_file.stem
+    print(f"Processing {portfolio_name}...")
+    
+    # Run CollectionFC
+    cmd = [
+        "python", "-m", "collection_fc",
+        "--mode", "simple",
+        "--input", str(csv_file),
+        "--forecast_path", str(output_dir / f"{portfolio_name}_forecast.csv"),
+        "--matrix_path", str(output_dir / f"{portfolio_name}_matrix.csv"),
+        "--validation_path", str(output_dir / f"{portfolio_name}_validation.json")
+    ]
+    
+    subprocess.run(cmd, check=True)
+    print(f"Completed {portfolio_name}")
+                            </div>
+                            
+                            <h4>Results Aggregation</h4>
+                            <div class="code-block">
+import json
+import pandas as pd
+
+# Aggregate results
+results = []
+for json_file in output_dir.glob("*_validation.json"):
+    portfolio_name = json_file.stem.replace("_validation", "")
+    
+    with open(json_file) as f:
+        validation = json.load(f)
+    
+    results.append({
+        'portfolio': portfolio_name,
+        'state_accuracy': validation['one_step_state_accuracy'],
+        'cash_wmape': validation['cash_wmape_12m'],
+        'bias': validation['cumulative_bias']
+    })
+
+# Create summary report
+summary_df = pd.DataFrame(results)
+print(summary_df.to_string(index=False))
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="integration">
+                        <h2>Integration Examples</h2>
+                        <p>Examples of integrating CollectionFC with other tools and workflows.</p>
+                        
+                        <div class="example-card">
+                            <h3 class="example-title">Jupyter Notebook Integration</h3>
+                            
+                            <h4>Interactive Analysis</h4>
+                            <div class="code-block">
+# Jupyter notebook cell
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from collection_fc import simple
+
+# Load and process data
+df = pd.read_csv('ledger.csv')
+P = simple.fit_simple(df)
+
+# Visualize transition matrix
+plt.figure(figsize=(10, 8))
+sns.heatmap(P, annot=True, fmt='.3f', cmap='Blues')
+plt.title('Collection State Transition Matrix')
+plt.xlabel('To State')
+plt.ylabel('From State')
+plt.show()
+
+# Generate and plot forecast
+cash_flow, balances = simple.simulate_cash(P, B0, c, H=12)
+months = range(1, 13)
+
+plt.figure(figsize=(12, 6))
+plt.subplot(1, 2, 1)
+plt.plot(months, cash_flow, 'b-o')
+plt.title('Monthly Cash Collections')
+plt.xlabel('Month')
+plt.ylabel('Cash ($)')
+
+plt.subplot(1, 2, 2)
+plt.plot(months, balances, 'r-o')
+plt.title('Portfolio Balance')
+plt.xlabel('Month')
+plt.ylabel('Balance ($)')
+plt.tight_layout()
+plt.show()
+                            </div>
+                            
+                            <h4>Excel Integration</h4>
+                            <div class="code-block">
+import pandas as pd
+from collection_fc import simple
+
+# Generate forecast
+df = pd.read_csv('ledger.csv')
+P = simple.fit_simple(df)
+cash_flow, balances = simple.simulate_cash(P, B0, c, H=12)
+
+# Create Excel report
+with pd.ExcelWriter('collection_forecast_report.xlsx') as writer:
+    # Forecast data
+    forecast_df = pd.DataFrame({
+        'Month': range(1, 13),
+        'Expected_Cash': cash_flow,
+        'Expected_Balance': balances
+    })
+    forecast_df.to_excel(writer, sheet_name='Forecast', index=False)
+    
+    # Transition matrix
+    matrix_df = pd.DataFrame(P, columns=STATES, index=STATES)
+    matrix_df.to_excel(writer, sheet_name='Transition_Matrix')
+    
+    # Summary statistics
+    summary_data = {
+        'Metric': ['Total Portfolio Value', '12-Month Collections', 'Avg Monthly Rate'],
+        'Value': [balances[0], cash_flow.sum(), cash_flow.mean() / balances[0]]
+    }
+    summary_df = pd.DataFrame(summary_data)
+    summary_df.to_excel(writer, sheet_name='Summary', index=False)
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Update active nav link based on scroll position
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.sidebar .nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

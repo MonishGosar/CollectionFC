@@ -1,10 +1,10 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='collection_fc',
-    version='0.1',
-    description='Simple collection forecasting library',
-    author='Your Name',
+    name='collection-fc',
+    version='0.1.0',
+    description='A flexible, easy-to-use Python library for collection forecasting.',
+    author='Monish Gosar',
     packages=find_packages(),
     install_requires=[
         'pandas',

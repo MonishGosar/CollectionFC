@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Guide - CollectionFC</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --text-color: #1f2937;
+            --light-bg: #f8fafc;
+            --border-color: #e2e8f0;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+        
+        .sidebar {
+            position: sticky;
+            top: 2rem;
+            height: calc(100vh - 4rem);
+            overflow-y: auto;
+        }
+        
+        .sidebar .nav-link {
+            color: var(--text-color);
+            padding: 0.5rem 0;
+            border-left: 3px solid transparent;
+        }
+        
+        .sidebar .nav-link:hover,
+        .sidebar .nav-link.active {
+            color: var(--primary-color);
+            border-left-color: var(--primary-color);
+            background: none;
+        }
+        
+        .content {
+            padding: 2rem 0;
+        }
+        
+        .code-block {
+            background: #1e293b;
+            color: #e2e8f0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        
+        .alert-info {
+            background: #dbeafe;
+            border-color: var(--primary-color);
+            color: var(--secondary-color);
+        }
+        
+        .table-responsive {
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .table th {
+            background: var(--light-bg);
+            font-weight: 600;
+        }
+        
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+        
+        h3 {
+            color: var(--secondary-color);
+            margin-top: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-chart-line me-2"></i>CollectionFC
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="user-guide.html">User Guide</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="api-reference.html">API</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="examples.html">Examples</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-lg-3 col-md-4">
+                <div class="sidebar p-3">
+                    <h5 class="mb-3">Table of Contents</h5>
+                    <nav class="nav flex-column">
+                        <a class="nav-link" href="#overview">Overview</a>
+                        <a class="nav-link" href="#installation">Installation</a>
+                        <a class="nav-link" href="#input-format">Input Format</a>
+                        <a class="nav-link" href="#basic-usage">Basic Usage</a>
+                        <a class="nav-link" href="#output-files">Output Files</a>
+                        <a class="nav-link" href="#state-definitions">State Definitions</a>
+                        <a class="nav-link" href="#validation">Validation</a>
+                        <a class="nav-link" href="#troubleshooting">Troubleshooting</a>
+                    </nav>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-lg-9 col-md-8">
+                <div class="content">
+                    <h1>User Guide</h1>
+                    <p class="lead">Complete guide to using CollectionFC for collection forecasting.</p>
+
+                    <section id="overview">
+                        <h2>Overview</h2>
+                        <p>CollectionFC is a Python library designed to simplify collection forecasting by automatically generating transition matrices and cash-flow projections from your collection ledger data.</p>
+                        
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle me-2"></i>
+                            <strong>Key Features:</strong> 7×7 transition matrix estimation, 12-month cash-flow forecast, and built-in accuracy diagnostics.
+                        </div>
+
+                        <h3>How It Works</h3>
+                        <ol>
+                            <li><strong>Data Processing:</strong> Your ledger data is processed to assign accounts to collection states</li>
+                            <li><strong>Matrix Estimation:</strong> Transition probabilities are calculated from historical state movements</li>
+                            <li><strong>Cash Flow Projection:</strong> Future collections are projected using the transition matrix</li>
+                            <li><strong>Validation:</strong> Model accuracy is assessed using historical back-testing</li>
+                        </ol>
+                    </section>
+
+                    <section id="installation">
+                        <h2>Installation</h2>
+                        <p>Install CollectionFC using pip:</p>
+                        <div class="code-block">
+pip install collection-fc
+                        </div>
+                        
+                        <p>For development installation:</p>
+                        <div class="code-block">
+git clone https://github.com/yourusername/collection_forecasting.git
+cd collection_forecasting
+pip install -e .
+                        </div>
+                    </section>
+
+                    <section id="input-format">
+                        <h2>Input Format</h2>
+                        <p>CollectionFC expects a CSV file with the following columns:</p>
+                        
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Column</th>
+                                        <th>Data Type</th>
+                                        <th>Required</th>
+                                        <th>Description</th>
+                                        <th>Example</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>account_id</code></td>
+                                        <td>string</td>
+                                        <td>Yes</td>
+                                        <td>Unique identifier for each account</td>
+                                        <td>"ACC001", "CUST_123"</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>as_of_date</code></td>
+                                        <td>YYYY-MM-DD</td>
+                                        <td>Yes</td>
+                                        <td>Month-end snapshot date</td>
+                                        <td>"2024-01-31"</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>dpd</code></td>
+                                        <td>integer</td>
+                                        <td>Yes</td>
+                                        <td>Days past due (raw integer)</td>
+                                        <td>0, 45, 120</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>balance</code></td>
+                                        <td>float</td>
+                                        <td>Yes</td>
+                                        <td>Outstanding principal at snapshot</td>
+                                        <td>1000.50, 5000.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>recovery_amt</code></td>
+                                        <td>float</td>
+                                        <td>Yes</td>
+                                        <td>Cash collected during the month</td>
+                                        <td>150.25, 0.00</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h3>Sample Data</h3>
+                        <div class="code-block">
+account_id,as_of_date,dpd,balance,recovery_amt
+ACC001,2024-01-31,0,1000.00,0.00
+ACC002,2024-01-31,30,2500.00,500.00
+ACC003,2024-01-31,60,1500.00,0.00
+ACC004,2024-01-31,90,3000.00,750.00
+ACC005,2024-01-31,120,2000.00,0.00
+                        </div>
+                    </section>
+
+                    <section id="basic-usage">
+                        <h2>Basic Usage</h2>
+                        <p>The simplest way to run CollectionFC:</p>
+                        <div class="code-block">
+python -m collection_fc --mode simple --input ledger.csv
+                        </div>
+
+                        <h3>Advanced Usage with Custom Paths</h3>
+                        <div class="code-block">
+python -m collection_fc --mode simple \
+    --input raw/ledger_may25.csv \
+    --forecast_path out/fc.csv \
+    --matrix_path out/P.csv \
+    --validation_path out/val.json
+                        </div>
+
+                        <h3>Command Line Options</h3>
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Option</th>
+                                        <th>Required</th>
+                                        <th>Default</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>--mode</code></td>
+                                        <td>Yes</td>
+                                        <td>simple</td>
+                                        <td>Forecasting mode (currently only 'simple' supported)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>--input</code></td>
+                                        <td>Yes</td>
+                                        <td>-</td>
+                                        <td>Path to input CSV file</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>--forecast_path</code></td>
+                                        <td>No</td>
+                                        <td>forecast.csv</td>
+                                        <td>Output path for cash flow forecast</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>--matrix_path</code></td>
+                                        <td>No</td>
+                                        <td>transition_matrix.csv</td>
+                                        <td>Output path for transition matrix</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>--validation_path</code></td>
+                                        <td>No</td>
+                                        <td>validation.json</td>
+                                        <td>Output path for validation metrics</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <section id="output-files">
+                        <h2>Output Files</h2>
+                        
+                        <h3>1. Cash Flow Forecast (forecast.csv)</h3>
+                        <p>Contains 12-month projections of expected cash collections and balances.</p>
+                        <div class="code-block">
+month,expected_cash,expected_balance
+1,125000.50,875000.00
+2,118750.25,756250.00
+3,112812.75,643437.25
+...
+                        </div>
+
+                        <h3>2. Transition Matrix (transition_matrix.csv)</h3>
+                        <p>7×7 matrix showing probability of moving from one state to another.</p>
+                        <div class="code-block">
+,C0,C1,C2,C3,C4,C5,WO
+C0,0.850000,0.120000,0.020000,0.005000,0.003000,0.001000,0.001000
+C1,0.300000,0.500000,0.150000,0.030000,0.015000,0.003000,0.002000
+C2,0.100000,0.200000,0.400000,0.200000,0.070000,0.020000,0.010000
+...
+                        </div>
+
+                        <h3>3. Validation Metrics (validation.json)</h3>
+                        <p>Model accuracy assessment based on historical back-testing.</p>
+                        <div class="code-block">
+{
+  "one_step_state_accuracy": 0.87,
+  "cash_wmape_12m": 0.064,
+  "cumulative_bias": 0.021
+}
+                        </div>
+                    </section>
+
+                    <section id="state-definitions">
+                        <h2>State Definitions</h2>
+                        <p>CollectionFC uses a 7-state classification system:</p>
+                        
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>State</th>
+                                        <th>DPD Range</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>C0</td><td>0 days</td><td>Current</td></tr>
+                                    <tr><td>C1</td><td>1-30 days</td><td>1-30 days past due</td></tr>
+                                    <tr><td>C2</td><td>31-60 days</td><td>31-60 days past due</td></tr>
+                                    <tr><td>C3</td><td>61-90 days</td><td>61-90 days past due</td></tr>
+                                    <tr><td>C4</td><td>91-120 days</td><td>91-120 days past due</td></tr>
+                                    <tr><td>C5</td><td>121-150 days</td><td>121-150 days past due</td></tr>
+                                    <tr><td>WO</td><td>151+ days</td><td>Write-off</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <section id="validation">
+                        <h2>Validation Metrics</h2>
+                        <p>CollectionFC provides three key validation metrics:</p>
+                        
+                        <h3>1. One-Step State Accuracy</h3>
+                        <p>Measures how well the model predicts the exact state of accounts one month ahead. A value of 0.87 means 87% of accounts were correctly classified.</p>
+                        
+                        <h3>2. Cash wMAPE (12-month)</h3>
+                        <p>Weighted Mean Absolute Percentage Error on cash collections over a 12-month horizon. Lower values indicate better accuracy.</p>
+                        
+                        <h3>3. Cumulative Bias</h3>
+                        <p>Measures systematic over/under-prediction. A value of 0.021 means the model over-predicted by 2.1% on average.</p>
+                        
+                        <div class="alert alert-info">
+                            <i class="fas fa-lightbulb me-2"></i>
+                            <strong>Tip:</strong> Good models typically have state accuracy > 0.80, wMAPE < 0.10, and bias between -0.05 and 0.05.
+                        </div>
+                    </section>
+
+                    <section id="troubleshooting">
+                        <h2>Troubleshooting</h2>
+                        
+                        <h3>Common Issues</h3>
+                        
+                        <h4>1. "No data found" error</h4>
+                        <p><strong>Cause:</strong> CSV file is empty or has no valid rows.</p>
+                        <p><strong>Solution:</strong> Check that your CSV file contains data and all required columns are present.</p>
+                        
+                        <h4>2. "Invalid date format" error</h4>
+                        <p><strong>Cause:</strong> Dates are not in YYYY-MM-DD format.</p>
+                        <p><strong>Solution:</strong> Ensure all dates in the as_of_date column follow the YYYY-MM-DD format.</p>
+                        
+                        <h4>3. Poor validation metrics</h4>
+                        <p><strong>Cause:</strong> Insufficient historical data or data quality issues.</p>
+                        <p><strong>Solution:</strong> Ensure you have at least 24 months of historical data with consistent reporting.</p>
+                        
+                        <h4>4. Memory errors with large datasets</h4>
+                        <p><strong>Cause:</strong> Very large CSV files may exceed available memory.</p>
+                        <p><strong>Solution:</strong> Consider processing data in chunks or using a machine with more RAM.</p>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Update active nav link based on scroll position
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.sidebar .nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

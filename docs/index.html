@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CollectionFC - Collection Forecasting Library</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --text-color: #1f2937;
+            --light-bg: #f8fafc;
+            --border-color: #e2e8f0;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 4rem 0;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+        
+        .feature-card {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease-in-out;
+            height: 100%;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-4px);
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-color);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .code-block {
+            background: #1e293b;
+            color: #e2e8f0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+        }
+        
+        .section-padding {
+            padding: 4rem 0;
+        }
+        
+        .btn-primary {
+            background: var(--primary-color);
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+        
+        .btn-primary:hover {
+            background: var(--secondary-color);
+        }
+        
+        .btn-outline-light {
+            border: 2px solid white;
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+        
+        .btn-outline-light:hover {
+            background: white;
+            color: var(--primary-color);
+        }
+        
+        .stats-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stats-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .footer {
+            background: var(--text-color);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-chart-line me-2"></i>CollectionFC
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#quickstart">Quick Start</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#documentation">Documentation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://github.com/yourusername/collection_forecasting" target="_blank">
+                            <i class="fab fa-github me-1"></i>GitHub
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="hero-title">CollectionFC</h1>
+                    <p class="hero-subtitle">A powerful Python library for collection forecasting with transition matrices and cash-flow projections.</p>
+                    <div class="d-flex gap-3">
+                        <a href="#quickstart" class="btn btn-primary">
+                            <i class="fas fa-rocket me-2"></i>Get Started
+                        </a>
+                        <a href="#documentation" class="btn btn-outline-light">
+                            <i class="fas fa-book me-2"></i>Documentation
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <i class="fas fa-chart-line" style="font-size: 8rem; opacity: 0.3;"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="section-padding bg-light">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-lg-8 mx-auto">
+                    <h2 class="display-4 fw-bold mb-3">Key Features</h2>
+                    <p class="lead text-muted">Everything you need for accurate collection forecasting</p>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card feature-card h-100">
+                        <div class="card-body text-center p-4">
+                            <div class="feature-icon mx-auto">
+                                <i class="fas fa-table"></i>
+                            </div>
+                            <h5 class="card-title">7×7 Transition Matrix</h5>
+                            <p class="card-text">Automatically estimate transition probabilities between collection states for accurate modeling.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card feature-card h-100">
+                        <div class="card-body text-center p-4">
+                            <div class="feature-icon mx-auto">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <h5 class="card-title">12-Month Cash Flow</h5>
+                            <p class="card-text">Generate detailed cash-flow forecasts with expected collections and balance projections.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card feature-card h-100">
+                        <div class="card-body text-center p-4">
+                            <div class="feature-icon mx-auto">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <h5 class="card-title">Accuracy Diagnostics</h5>
+                            <p class="card-text">Built-in validation with state accuracy, wMAPE, and bias metrics for model assessment.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Start Section -->
+    <section id="quickstart" class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <h2 class="display-5 fw-bold text-center mb-5">Quick Start</h2>
+                    
+                    <div class="mb-4">
+                        <h4>1. Installation</h4>
+                        <div class="code-block">
+pip install collection-fc
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h4>2. Prepare Your Data</h4>
+                        <p>Your CSV file should have these columns:</p>
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Column</th>
+                                        <th>Type</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>account_id</td><td>string</td><td>Unique account identifier</td></tr>
+                                    <tr><td>as_of_date</td><td>YYYY-MM-DD</td><td>Month-end snapshot date</td></tr>
+                                    <tr><td>dpd</td><td>integer</td><td>Days past due</td></tr>
+                                    <tr><td>balance</td><td>float</td><td>Outstanding principal</td></tr>
+                                    <tr><td>recovery_amt</td><td>float</td><td>Cash collected during month</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h4>3. Run Forecast</h4>
+                        <div class="code-block">
+python -m collection_fc --mode simple --input ledger.csv
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h4>4. Get Results</h4>
+                        <p>The tool generates three output files:</p>
+                        <ul>
+                            <li><strong>forecast.csv</strong> - 12-month cash flow projections</li>
+                            <li><strong>transition_matrix.csv</strong> - 7×7 state transition probabilities</li>
+                            <li><strong>validation.json</strong> - Model accuracy metrics</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Documentation Section -->
+    <section id="documentation" class="section-padding bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <h2 class="display-5 fw-bold text-center mb-5">Documentation</h2>
+                    
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <i class="fas fa-book me-2 text-primary"></i>
+                                        User Guide
+                                    </h5>
+                                    <p class="card-text">Complete guide to using CollectionFC, including input formats, output interpretation, and best practices.</p>
+                                    <a href="user-guide.html" class="btn btn-outline-primary">Read Guide</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <i class="fas fa-code me-2 text-primary"></i>
+                                        API Reference
+                                    </h5>
+                                    <p class="card-text">Detailed API documentation for developers who want to integrate CollectionFC into their applications.</p>
+                                    <a href="api-reference.html" class="btn btn-outline-primary">View API</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <i class="fas fa-lightbulb me-2 text-primary"></i>
+                                        Examples
+                                    </h5>
+                                    <p class="card-text">Real-world examples and use cases showing how to apply CollectionFC to different scenarios.</p>
+                                    <a href="examples.html" class="btn btn-outline-primary">View Examples</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <i class="fas fa-cog me-2 text-primary"></i>
+                                        Advanced Usage
+                                    </h5>
+                                    <p class="card-text">Advanced configuration options, custom state definitions, and performance optimization tips.</p>
+                                    <a href="advanced.html" class="btn btn-outline-primary">Learn More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h5 class="mb-3">CollectionFC</h5>
+                    <p class="mb-4">A powerful Python library for collection forecasting with transition matrices and cash-flow projections.</p>
+                    <div class="d-flex justify-content-center gap-3 mb-4">
+                        <a href="https://github.com/yourusername/collection_forecasting" class="text-white">
+                            <i class="fab fa-github fa-lg"></i>
+                        </a>
+                        <a href="https://pypi.org/project/collection-fc/" class="text-white">
+                            <i class="fab fa-python fa-lg"></i>
+                        </a>
+                    </div>
+                    <p class="small text-muted">© 2025 CollectionFC. MIT License.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html> 
