@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CollectionFC - Minimal Documentation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fafafa;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .header {
+            border-bottom: 2px solid #e5e5e5;
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .title {
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: #2563eb;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-weight: 400;
+        }
+        
+        .section {
+            margin-bottom: 3rem;
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #2563eb;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #e5e5e5;
+            padding-bottom: 0.5rem;
+        }
+        
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #374151;
+            margin: 1.5rem 0 0.5rem 0;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            color: #4b5563;
+        }
+        
+        .code {
+            background: #1f2937;
+            color: #f3f4f6;
+            padding: 1.5rem;
+            border-radius: 6px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        
+        .code.inline {
+            background: #f3f4f6;
+            color: #374151;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+        
+        .note {
+            background: #eff6ff;
+            border-left: 4px solid #2563eb;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 6px 6px 0;
+        }
+        
+        .warning {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 6px 6px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: white;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        
+        th {
+            background: #f9fafb;
+            font-weight: 500;
+            color: #374151;
+        }
+        
+        .nav {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .nav a {
+            color: #2563eb;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border: 1px solid #2563eb;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+        
+        .nav a:hover {
+            background: #2563eb;
+            color: white;
+        }
+        
+        .output {
+            background: #f0f9ff;
+            border: 1px solid #0ea5e9;
+            border-radius: 6px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .output-title {
+            font-weight: 500;
+            color: #0c4a6e;
+            margin-bottom: 0.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            
+            .title {
+                font-size: 2rem;
+            }
+            
+            .section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1 class="title">CollectionFC</h1>
+        <p class="subtitle">Collection forecasting with transition matrices</p>
+        <div class="nav">
+            <a href="#install">Install</a>
+            <a href="#quickstart">Quick Start</a>
+            <a href="#api">API</a>
+            <a href="#examples">Examples</a>
+            <a href="https://github.com/yourusername/collection_forecasting" target="_blank">GitHub</a>
+        </div>
+    </div>
+
+    <div class="section" id="install">
+        <h2>Install</h2>
+        <div class="code">pip install collection-fc</div>
+        <p>Requires Python 3.7+ with pandas and numpy.</p>
+    </div>
+
+    <div class="section" id="quickstart">
+        <h2>Quick Start</h2>
+        
+        <h3>1. Prepare Data</h3>
+        <p>Your CSV needs these columns:</p>
+        <table>
+            <tr><th>Column</th><th>Type</th><th>Description</th></tr>
+            <tr><td>account_id</td><td>string</td><td>Unique account identifier</td></tr>
+            <tr><td>as_of_date</td><td>YYYY-MM-DD</td><td>Month-end snapshot date</td></tr>
+            <tr><td>dpd</td><td>integer</td><td>Days past due</td></tr>
+            <tr><td>balance</td><td>float</td><td>Outstanding principal</td></tr>
+            <tr><td>recovery_amt</td><td>float</td><td>Cash collected during month</td></tr>
+        </table>
+
+        <h3>2. Run Forecast</h3>
+        <div class="code">python -m collection_fc --mode simple --input ledger.csv</div>
+
+        <h3>3. Get Results</h3>
+        <p>Three files are generated:</p>
+        <ul>
+            <li><span class="code inline">forecast.csv</span> - 12-month cash flow projections</li>
+            <li><span class="code inline">transition_matrix.csv</span> - 7×7 state transition probabilities</li>
+            <li><span class="code inline">validation.json</span> - Model accuracy metrics</li>
+        </ul>
+    </div>
+
+    <div class="section" id="api">
+        <h2>API</h2>
+        
+        <h3>Command Line</h3>
+        <div class="code">python -m collection_fc [options]</div>
+        
+        <table>
+            <tr><th>Option</th><th>Required</th><th>Default</th><th>Description</th></tr>
+            <tr><td>--mode</td><td>Yes</td><td>simple</td><td>Forecasting mode</td></tr>
+            <tr><td>--input</td><td>Yes</td><td>-</td><td>Input CSV file path</td></tr>
+            <tr><td>--forecast_path</td><td>No</td><td>forecast.csv</td><td>Forecast output path</td></tr>
+            <tr><td>--matrix_path</td><td>No</td><td>transition_matrix.csv</td><td>Matrix output path</td></tr>
+            <tr><td>--validation_path</td><td>No</td><td>validation.json</td><td>Validation output path</td></tr>
+        </table>
+
+        <h3>Python API</h3>
+        <div class="code">from collection_fc import simple
+import pandas as pd
+
+# Load data
+df = pd.read_csv('ledger.csv')
+
+# Fit model
+P = simple.fit_simple(df, lookback=24)
+c = simple.build_c_vector(df)
+
+# Generate forecast
+cash_flow, balances = simple.simulate_cash(P, B0, c, H=12)</div>
+    </div>
+
+    <div class="section" id="examples">
+        <h2>Examples</h2>
+        
+        <h3>Sample Data</h3>
+        <div class="code">account_id,as_of_date,dpd,balance,recovery_amt
+ACC001,2024-01-31,0,1000.00,0.00
+ACC002,2024-01-31,30,2500.00,500.00
+ACC003,2024-01-31,60,1500.00,0.00
+ACC004,2024-01-31,90,3000.00,750.00
+ACC005,2024-01-31,120,2000.00,0.00</div>
+
+        <h3>Expected Output</h3>
+        <div class="output">
+            <div class="output-title">forecast.csv</div>
+            <div class="code">month,expected_cash,expected_balance
+1,125000.50,875000.00
+2,118750.25,756250.00
+3,112812.75,643437.25
+...</div>
+        </div>
+
+        <div class="output">
+            <div class="output-title">validation.json</div>
+            <div class="code">{
+  "one_step_state_accuracy": 0.87,
+  "cash_wmape_12m": 0.064,
+  "cumulative_bias": 0.021
+}</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>State Definitions</h2>
+        <table>
+            <tr><th>State</th><th>DPD Range</th><th>Description</th></tr>
+            <tr><td>C0</td><td>0 days</td><td>Current</td></tr>
+            <tr><td>C1</td><td>1-30 days</td><td>1-30 days past due</td></tr>
+            <tr><td>C2</td><td>31-60 days</td><td>31-60 days past due</td></tr>
+            <tr><td>C3</td><td>61-90 days</td><td>61-90 days past due</td></tr>
+            <tr><td>C4</td><td>91-120 days</td><td>91-120 days past due</td></tr>
+            <tr><td>C5</td><td>121-150 days</td><td>121-150 days past due</td></tr>
+            <tr><td>WO</td><td>151+ days</td><td>Write-off</td></tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>Validation Metrics</h2>
+        <ul>
+            <li><strong>State Accuracy:</strong> How well the model predicts exact states (target: >0.80)</li>
+            <li><strong>Cash wMAPE:</strong> Weighted mean absolute percentage error on cash (target: <0.10)</li>
+            <li><strong>Cumulative Bias:</strong> Systematic over/under-prediction (target: -0.05 to 0.05)</li>
+        </ul>
+        
+        <div class="note">
+            <strong>Note:</strong> Good models typically have state accuracy > 0.80, wMAPE < 0.10, and bias between -0.05 and 0.05.
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Troubleshooting</h2>
+        
+        <h3>Common Issues</h3>
+        <div class="warning">
+            <strong>"No data found":</strong> Check that your CSV file contains data and all required columns are present.
+        </div>
+        
+        <div class="warning">
+            <strong>"Invalid date format":</strong> Ensure all dates follow YYYY-MM-DD format.
+        </div>
+        
+        <div class="warning">
+            <strong>Poor validation metrics:</strong> Ensure you have at least 24 months of historical data.
+        </div>
+    </div>
+
+    <div class="section">
+        <p style="text-align: center; color: #666; margin-top: 2rem;">
+            CollectionFC v0.1.0 • <a href="https://github.com/yourusername/collection_forecasting" style="color: #2563eb;">GitHub</a>
+        </p>
+    </div>
+</body>
+</html> 

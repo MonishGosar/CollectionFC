@@ -129,6 +129,25 @@
             color: white;
             padding: 3rem 0 1rem;
         }
+        
+        .minimal-link {
+            background: #f8fafc;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem;
+            transition: all 0.2s;
+        }
+        
+        .minimal-link:hover {
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
@@ -169,12 +188,15 @@
                 <div class="col-lg-6">
                     <h1 class="hero-title">CollectionFC</h1>
                     <p class="hero-subtitle">A powerful Python library for collection forecasting with transition matrices and cash-flow projections.</p>
-                    <div class="d-flex gap-3">
+                    <div class="d-flex gap-3 flex-wrap">
                         <a href="#quickstart" class="btn btn-primary">
                             <i class="fas fa-rocket me-2"></i>Get Started
                         </a>
                         <a href="#documentation" class="btn btn-outline-light">
                             <i class="fas fa-book me-2"></i>Documentation
+                        </a>
+                        <a href="minimal.html" class="minimal-link">
+                            <i class="fas fa-file-alt me-2"></i>Minimal Docs
                         </a>
                     </div>
                 </div>
@@ -302,10 +324,22 @@ python -m collection_fc --mode simple --input ledger.csv
                             <div class="card h-100">
                                 <div class="card-body">
                                     <h5 class="card-title">
+                                        <i class="fas fa-file-alt me-2 text-primary"></i>
+                                        Minimal Documentation
+                                    </h5>
+                                    <p class="card-text">Clean, focused documentation with essential information only.</p>
+                                    <a href="minimal.html" class="btn btn-outline-primary">View Minimal</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">
                                         <i class="fas fa-book me-2 text-primary"></i>
                                         User Guide
                                     </h5>
-                                    <p class="card-text">Complete guide to using CollectionFC, including input formats, output interpretation, and best practices.</p>
+                                    <p class="card-text">Comprehensive guide to using CollectionFC, including input formats, output interpretation, and best practices.</p>
                                     <a href="user-guide.html" class="btn btn-outline-primary">Read Guide</a>
                                 </div>
                             </div>
@@ -331,6 +365,18 @@ python -m collection_fc --mode simple --input ledger.csv
                                     </h5>
                                     <p class="card-text">Real-world examples and use cases showing how to apply CollectionFC to different scenarios.</p>
                                     <a href="examples.html" class="btn btn-outline-primary">View Examples</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <i class="fas fa-jupyter me-2 text-primary"></i>
+                                        Jupyter Notebooks
+                                    </h5>
+                                    <p class="card-text">Interactive notebooks with examples and demonstrations of CollectionFC functionality.</p>
+                                    <a href="https://github.com/yourusername/collection_forecasting/tree/main/examples" target="_blank" class="btn btn-outline-primary">View Notebooks</a>
                                 </div>
                             </div>
                         </div>
